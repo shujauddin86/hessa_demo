@@ -1,39 +1,143 @@
-{
-  "name": "hessa-demo2",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+import React, { useState } from "react";
+
+function App() {
+  const [screen, setScreen] = useState("home");
+
+  // LOGIN SCREEN
+  if (screen === "login") {
+    return (
+      <div style={styles.container}>
+        <h2>Login to Hessa</h2>
+
+        <button style={styles.button}>Continue with Google</button>
+        <button style={styles.button}>Continue with Phone</button>
+        <button style={styles.button}>Continue with Email</button>
+
+        <br />
+        <button style={styles.secondary} onClick={() => setScreen("home")}>
+          Back
+        </button>
+      </div>
+    );
   }
+
+  // DOWNLOAD SCREEN
+  if (screen === "download") {
+    return (
+      <div style={styles.container}>
+        <h2>Your reel is ready 🎬</h2>
+        <p>Download your generated story</p>
+
+        <button style={styles.button}>Download Reel</button>
+      </div>
+    );
+  }
+
+  // PLANS SCREEN
+  if (screen === "plans") {
+    return (
+      <div style={styles.container}>
+        <h2>Unlimited Access</h2>
+
+        <div style={styles.card}>
+          <h3>Hessa Pro</h3>
+          <p style={{ fontSize: "28px", margin: "10px 0" }}>₹0</p>
+          <p>Unlimited reel generation</p>
+          <p>Unlimited uploads</p>
+        </div>
+
+        <button style={styles.button}>Continue</button>
+
+        <br />
+        <button style={styles.secondary} onClick={() => setScreen("home")}>
+          Back
+        </button>
+      </div>
+    );
+  }
+
+  // HOME SCREEN (MAIN SCREEN)
+  return (
+    <div style={styles.container}>
+      <div style={styles.badge}>🚧 Demo / Testing Phase</div>
+
+      <h1 style={{ fontSize: "40px", marginBottom: "10px" }}>
+        Hessa Search
+      </h1>
+
+      <p style={{ fontSize: "18px", marginBottom: "30px" }}>
+        Every video you own is a story waiting
+      </p>
+
+      <button style={styles.button} onClick={() => setScreen("login")}>
+        Continue
+      </button>
+
+      <br />
+
+      <button style={styles.secondary} onClick={() => setScreen("download")}>
+        View Demo Reel
+      </button>
+
+      <br />
+
+      <button style={styles.secondary} onClick={() => setScreen("plans")}>
+        Get Unlimited Access
+      </button>
+
+      <p style={styles.footer}>
+        By continuing, you agree to Terms of Service and Privacy Policy
+      </p>
+    </div>
+  );
 }
+
+// SIMPLE STYLES (CLEAN LOOK)
+const styles = {
+  container: {
+    textAlign: "center",
+    marginTop: "100px",
+    fontFamily: "Arial, sans-serif",
+  },
+  button: {
+    padding: "12px 20px",
+    margin: "10px",
+    backgroundColor: "#ff2d2d",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+  secondary: {
+    padding: "10px 18px",
+    margin: "8px",
+    backgroundColor: "#eee",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+  },
+  badge: {
+    backgroundColor: "#ffe5e5",
+    color: "#ff2d2d",
+    padding: "6px 12px",
+    borderRadius: "20px",
+    display: "inline-block",
+    marginBottom: "20px",
+    fontSize: "12px",
+  },
+  footer: {
+    marginTop: "50px",
+    fontSize: "12px",
+    color: "#666",
+  },
+  card: {
+    border: "1px solid #eee",
+    padding: "20px",
+    borderRadius: "12px",
+    width: "250px",
+    margin: "20px auto",
+  },
+};
+
+export default App;
